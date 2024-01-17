@@ -17,6 +17,7 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
   userModel
  .findOne({username:req.session.passport.user})
  .populate("posts")
+//  .populate("profileImage")
  .then(function(oneuser){ 
   // console.log(oneuser)
   res.render('profile',{ oneuser }); 
@@ -26,6 +27,35 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
+
+router.get('/changeprofileimage',isLoggedIn, function(req, res) {
+  res.render('profileimg');
+});
+
+router.post('/addprofileimage',isLoggedIn, upload.single('image') ,  async function(req, res, next) {
+  const user = await userModel.findOne({ username:req.session.passport.user})
+    user.profileImage = req.file.filename;
+  await user.save();
+  res.redirect("/profile")
+});
+
+router.get('/edit', isLoggedIn, function(req, res, next) {
+  userModel.findOne({username:req.session.passport.user})
+  .then(function(founduser){
+    res.render("edit",{founduser})
+  })
+});
+
+router.post('/update',function(req,res){
+  userModel.findOneAndUpdate({username:req.session.passport.user},{
+    username:req.body.username,
+    email:req.body.email,
+    fullname:req.body.fullname
+  })
+  .then(function(updateuser){
+    res.redirect("/profile")
+  })
+})
 
 router.get('/feed', isLoggedIn ,function(req,res){
   postModel.find()

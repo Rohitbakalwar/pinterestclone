@@ -21,7 +21,7 @@ const userSchema =  mongoose.Schema({
     type:String,
     required:true
   },
-  dp:{
+  profileImage:{
     type:String
   },
   posts:[

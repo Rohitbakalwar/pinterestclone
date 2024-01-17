@@ -14,17 +14,21 @@
 <body>
     <div id="main">
         <div id="part1">
+                <img src="https://static-00.iconduck.com/assets.00/pinterest-icon-512x512-3vn0ggs9.png"  alt="" id="logo">
             <div id="card">
-                <div id="dpdiv">
-                <img src="https://images.unsplash.com/photo-1682686581797-21ec383ead02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8" alt="" id="dp">
-                <span id="pencil"><i class="ri-edit-line"></i></span>
-                 </div>
+                <img src="images/uploads/<%= oneuser.profileImage %>" alt="" id="dp">
                 <h1><%= oneuser.fullname %></h1>
                 <h3>@<%= oneuser.username %></h3>
                <div id="logout">
-                <a href="/edit"><button class="edit">Edit</button></a>
-                <a href="/upload"><button class="edit">Add post</button></a><a href="/logout"><button class="edit">logout</button></a>
+                <!-- <a href="/edit"><button class="edit">Edit</button></a> -->
+                <a href="/upload"><button class="edit">Add post</button></a>
+                <!-- <a href="/logout"><button class="edit">logout</button></a> -->
                </div>
+            </div>
+            <div id="nav">
+               <a href="/edit"><h4>Edit</h4></a>
+               <a href="/feed   "><h4>feed</h4></a>
+                <a href="/logout"><h4>logout</h4></a>
             </div>
         </div>
         <div id="part2">
